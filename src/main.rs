@@ -37,11 +37,11 @@ fn main() -> anyhow::Result<()> {
             .ok_or(anyhow::anyhow!("No version found"))?
     };
     dbg!(&version);
-    let output_filename = {
+    let output_name = {
         let platform_arch = get_out_platform_arch();
-        format!("portalbox-vscode-{version}-{platform_arch}.tar.gz")
+        format!("portalbox-vscode-{version}-{platform_arch}")
     };
-    dbg!(&output_filename);
+    dbg!(&output_name);
 
     cfg_if::cfg_if! {
         if #[cfg(target_os = "windows")] {
@@ -63,7 +63,8 @@ fn main() -> anyhow::Result<()> {
 
     drop(in_repo_dir);
 
-    cmd!(sh, "tar -czf {output_filename} {out_dir}").run()?;
+    cmd!(sh, "mv {out_dir} {output_name}").run()?;
+    cmd!(sh, "tar -czf {output_name}.tar.gz {output_name}").run()?;
 
     Ok(())
 }
