@@ -2,7 +2,7 @@ name: Build PortalBox VSCode
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*"
 jobs:
   build:
     strategy:
