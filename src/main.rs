@@ -84,10 +84,6 @@ fn get_build_platform_arch() -> String {
     #[cfg(target_os = "windows")]
     static PLATFORM: &str = "win32";
 
-    if PLATFORM == "darwin" {
-        return PLATFORM.to_string();
-    }
-
     let arch = get_build_arch();
 
     format!("{PLATFORM}-{arch}")
