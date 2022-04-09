@@ -9,19 +9,14 @@ fn main() -> anyhow::Result<()> {
     dbg!(&platform_arch);
 
     let repo = "openvscode-server";
-    let release_branch = "release/1.66";
-    let tag: Option<&str> = None;
+    let tag = "openvscode-server-v1.66.1";
     cmd!(sh, "git clone https://github.com/gitpod-io/{repo}").run()?;
 
     let out_dir = format!("vscode-reh-web-{platform_arch}");
 
     let in_repo_dir = sh.push_dir(repo);
     {
-        // Apply our patches
-        cmd!(sh, "git switch {release_branch}").run()?;
-        if let Some(tag) = tag {
-            cmd!(sh, "git checkout {tag}").run()?;
-        }
+        cmd!(sh, "git checkout {tag}").run()?;
 
         cmd!(sh, "git reset --hard").run()?;
 
