@@ -3,6 +3,9 @@ on:
   push:
     tags:
       - "v*"
+concurrency: 
+  group: release
+  cancel-in-progress: true
 jobs:
   build:
     strategy:
