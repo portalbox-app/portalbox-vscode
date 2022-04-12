@@ -67,8 +67,8 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-fn get_build_arch() -> &'static str {
-    "x64"
+fn get_build_arch() -> String {
+    std::env::var("BUILD_ARCH").unwrap()
 }
 
 fn get_build_platform_arch() -> String {
