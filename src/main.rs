@@ -9,7 +9,7 @@ fn main() -> anyhow::Result<()> {
     dbg!(&platform_arch);
 
     let repo = "openvscode-server";
-    let tag = "openvscode-server-v1.66.1";
+    let tag = "openvscode-server-v1.67.0";
     cmd!(sh, "git clone https://github.com/gitpod-io/{repo}").run()?;
 
     let out_dir = format!("vscode-reh-web-{platform_arch}");
